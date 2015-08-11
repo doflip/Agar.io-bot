@@ -1,13 +1,13 @@
 // ==UserScript==
-// @name        AposBot
-// @namespace   AposBot
+// @name        Agartson
+// @namespace   Agartson
 // @include     http://agar.io/*
-// @version     3.56
+// @version     4.0.0
 // @grant       none
-// @author      http://www.twitch.tv/apostolique
+// @author      doflip
 // ==/UserScript==
 
-var aposBotVersion = 3.56;
+var AgartsonVersion = 4.0.0;
 
 //TODO: Team mode
 //      Detect when people are merging
@@ -24,46 +24,46 @@ Array.prototype.peek = function() {
     return this[this.length - 1];
 };
 
-var sha = "efde0488cc2cc176db48dd23b28a20b90314352b";
-function getLatestCommit() {
-    window.jQuery.ajax({
-            url: "https://api.github.com/repos/apostolique/Agar.io-bot/git/refs/heads/master",
-            cache: false,
-            dataType: "jsonp"
-        }).done(function(data) {
-            console.dir(data["data"])
-            console.log("hmm: " + data["data"]["object"]["sha"]);
-            sha = data["data"]["object"]["sha"];
+// var sha = "efde0488cc2cc176db48dd23b28a20b90314352b";
+// function getLatestCommit() {
+//     window.jQuery.ajax({
+//             url: "https://api.github.com/repos/apostolique/Agar.io-bot/git/refs/heads/master",
+//             cache: false,
+//             dataType: "jsonp"
+//         }).done(function(data) {
+//             console.dir(data["data"])
+//             console.log("hmm: " + data["data"]["object"]["sha"]);
+//             sha = data["data"]["object"]["sha"];
 
-            function update(prefix, name, url) {
-                window.jQuery(document.body).prepend("<div id='" + prefix + "Dialog' style='position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 100; display: none;'>");
-                window.jQuery('#' + prefix + 'Dialog').append("<div id='" + prefix + "Message' style='width: 350px; background-color: #FFFFFF; margin: 100px auto; border-radius: 15px; padding: 5px 15px 5px 15px;'>");
-                window.jQuery('#' + prefix + 'Message').append("<h2>UPDATE TIME!!!</h2>");
-                window.jQuery('#' + prefix + 'Message').append("<p>Grab the update for: <a id='" + prefix + "Link' href='" + url + "' target=\"_blank\">" + name + "</a></p>");
-                window.jQuery('#' + prefix + 'Link').on('click', function() {
-                    window.jQuery("#" + prefix + "Dialog").hide();
-                    window.jQuery("#" + prefix + "Dialog").remove();
-                });
-                window.jQuery("#" + prefix + "Dialog").show();
-            }
+//             function update(prefix, name, url) {
+//                 window.jQuery(document.body).prepend("<div id='" + prefix + "Dialog' style='position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 100; display: none;'>");
+//                 window.jQuery('#' + prefix + 'Dialog').append("<div id='" + prefix + "Message' style='width: 350px; background-color: #FFFFFF; margin: 100px auto; border-radius: 15px; padding: 5px 15px 5px 15px;'>");
+//                 window.jQuery('#' + prefix + 'Message').append("<h2>UPDATE TIME!!!</h2>");
+//                 window.jQuery('#' + prefix + 'Message').append("<p>Grab the update for: <a id='" + prefix + "Link' href='" + url + "' target=\"_blank\">" + name + "</a></p>");
+//                 window.jQuery('#' + prefix + 'Link').on('click', function() {
+//                     window.jQuery("#" + prefix + "Dialog").hide();
+//                     window.jQuery("#" + prefix + "Dialog").remove();
+//                 });
+//                 window.jQuery("#" + prefix + "Dialog").show();
+//             }
 
-            $.get('https://raw.githubusercontent.com/Apostolique/Agar.io-bot/master/bot.user.js?' + Math.floor((Math.random() * 1000000) + 1), function(data) {
-                var latestVersion = data.replace(/(\r\n|\n|\r)/gm,"");
-                latestVersion = latestVersion.substring(latestVersion.indexOf("// @version")+11,latestVersion.indexOf("// @grant"));
+//             $.get('https://raw.githubusercontent.com/Apostolique/Agar.io-bot/master/bot.user.js?' + Math.floor((Math.random() * 1000000) + 1), function(data) {
+//                 var latestVersion = data.replace(/(\r\n|\n|\r)/gm,"");
+//                 latestVersion = latestVersion.substring(latestVersion.indexOf("// @version")+11,latestVersion.indexOf("// @grant"));
 
-                latestVersion = parseFloat(latestVersion + 0.0000);
-                var myVersion = parseFloat(aposBotVersion + 0.0000); 
+//                 latestVersion = parseFloat(latestVersion + 0.0000);
+//                 var myVersion = parseFloat(AgartsonVersion + 0.0000); 
                 
-                if(latestVersion > myVersion)
-                {
-                    update("aposBot", "bot.user.js", "https://github.com/Apostolique/Agar.io-bot/blob/" + sha + "/bot.user.js/");
-                }
-                console.log('Current bot.user.js Version: ' + myVersion + " on Github: " + latestVersion);
-            });
+//                 if(latestVersion > myVersion)
+//                 {
+//                     update("Agartson", "bot.user.js", "https://github.com/Apostolique/Agar.io-bot/blob/" + sha + "/bot.user.js/");
+//                 }
+//                 console.log('Current bot.user.js Version: ' + myVersion + " on Github: " + latestVersion);
+//             });
 
-        }).fail(function() {});
-}
-getLatestCommit();
+//         }).fail(function() {});
+// }
+// getLatestCommit();
 
 console.log("Running Apos Bot!");
 (function(f, g) {
@@ -82,10 +82,10 @@ console.log("Running Apos Bot!");
         }
     }
 
-    f.botList.push(["AposBot " + aposBotVersion, findDestination]);
+    f.botList.push(["Agartson " + AgartsonVersion, findDestination]);
 
     var bList = g('#bList');
-    g('<option />', {value: (f.botList.length - 1), text: "AposBot"}).appendTo(bList);
+    g('<option />', {value: (f.botList.length - 1), text: "Agartson"}).appendTo(bList);
 
     //Given an angle value that was gotten from valueAndleBased(),
     //returns a new value that scales it appropriately.
